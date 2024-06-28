@@ -6,7 +6,13 @@
 working_file="$(basename "$2")"
 working_folder="$(dirname "$2")"
 
-target_file="$(echo $working_file | sed 's/ - Org-/ - Web-/')"
+if echo "$working_file" | grep -q "2160p"; then
+	target_file="$(echo $working_file | sed 's/ - Org-/ - Web-/' | sed 's/2160p/1080p/')"
+else
+	target_file="$(echo $working_file | sed 's/ - Org-/ - Web-/')"
+fi
+
+
 target_folder="/mnt/Multimedia/FilmyWeb/$(echo $working_file | sed 's/ - Org-.*//')"
 
 
